@@ -1,0 +1,35 @@
+{
+  "name": "complete-todo",
+  "version": "1.0.0",
+  "description": "my final project, which includes all my knowledge",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node index.js",
+    "serve": "cross-env NODE_ENV=development nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DonAlexandro/complete-todo.git"
+  },
+  "keywords": [
+    "js",
+    "mern",
+    "react",
+    "express",
+    "node"
+  ],
+  "author": "DonAlexandro <parashnokwtf@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DonAlexandro/complete-todo/issues"
+  },
+  "homepage": "https://github.com/DonAlexandro/complete-todo#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.11.18"
+  },
+  "devDependencies": {
+    "concurrently": "^6.0.0",
+    "cross-env": "^7.0.3"
+  }
+}

@@ -1,0 +1,31 @@
+@import '~antd/dist/antd.min.css';
+
+.header {
+    display: flex;
+
+    .logo {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+
+        .title {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.auth-wrapper {
+    width: 100%;
+    height: calc(100vh - 64px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .auth-card {
+        min-width: 40%;
+
+        .auth-card-header {
+            text-align: center;
+        }
+    }
+}

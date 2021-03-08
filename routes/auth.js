@@ -41,8 +41,28 @@ router.post('/signup', signupValidator, async (req, res) => {
 	}
 })
 
+router.post('/confirm', async (req, res) => {
+	try {
+		const user = await User.findById(req.body.id)
+
+		if (user.emailVerified) {
+			return res.status(400).json({error: 'Твій акаунт уже верифіковано!'})
+		}
+
+		Object.assign(user, {emailVerified: true})
+
+		await user.save()
+
+		res.json({message: 'Дякуємо, за верифікацію! Тепер ти можеш повноцінно використовувати наш сервіс'})
+	} catch (e) {
+		console.log(e)
+		res.status(500).json({error: 'Упс... щось пішло не так'})
+	}
+})
+
 router.post('/login', (req, res) => {
 
 })
+
 
 module.exports = router

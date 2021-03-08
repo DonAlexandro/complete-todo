@@ -5,9 +5,8 @@ import {SIGNUP_REQUEST, SignupRequestType} from './types'
 
 function* signupSagaWorker(action: SignupRequestType): Generator<StrictEffect> {
 	try {
+		// todo: change any to something correct
 		const data: any = yield call(signup, action.payload)
-
-		console.log(data)
 
 		yield put(actions.signupSuccess(data.message))
 	} catch (e) {

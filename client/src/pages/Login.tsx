@@ -4,6 +4,7 @@ import {message as toast} from 'antd'
 import {AuthWrapper} from '../components/AuthWrapper'
 import {AppStateType} from '../redux/rootReducer'
 import {actions} from '../redux/auth/signup/actions'
+import {LoginForm} from '../components/Forms/LoginForm'
 
 export const Login: React.FC = () => {
     const {message} = useSelector((state: AppStateType) => state.signup)
@@ -18,7 +19,7 @@ export const Login: React.FC = () => {
 
     return (
         <AuthWrapper title="Вхід">
-
+            <LoginForm />
         </AuthWrapper>
     )
 }

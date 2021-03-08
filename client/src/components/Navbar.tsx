@@ -23,19 +23,19 @@ export const Navbar: React.FC<NavbarTypes> = ({isAuthenticated}) => {
                 {isAuthenticated ?
                     <>
                         <Menu.Item key="todos">
-                            <NavLink to="/">Задачі</NavLink>
+                            <NavLink to="/" exact>Задачі</NavLink>
                         </Menu.Item>
                         <Menu.Item key="todos">
-                            <a href="/" onClick={logoutHandler}>Задачі</a>
+                            <a href="/" onClick={logoutHandler}>Вийти</a>
                         </Menu.Item>
                     </>
                     :
                     <>
                         <Menu.Item key="login">
-                            <NavLink to="/login">Вхід</NavLink>
+                            <NavLink to="/login" exact>Вхід</NavLink>
                         </Menu.Item>
                         <Menu.Item key="signup">
-                            <NavLink to="/signup">Реєстрація</NavLink>
+                            <NavLink to="/signup" exact>Реєстрація</NavLink>
                         </Menu.Item>
                     </>
                 }

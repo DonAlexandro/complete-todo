@@ -11,7 +11,7 @@ exports.signupValidator = [
 			const candidate = await User.findOne({email: value})
 
 			if (candidate) {
-				return Promise.reject('Ой! А такий Email вже зайнятий')
+				return Promise.reject('Такий Email вже зайнятий')
 			}
 		}),
 	body('password')

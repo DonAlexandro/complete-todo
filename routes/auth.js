@@ -21,7 +21,7 @@ router.post('/signup', signupValidator, async (req, res) => {
 	const errors = validationResult(req)
 
 	if (!errors.isEmpty()) {
-		return req.status(400).json({message: errors.array()[0].msg})
+		return res.status(400).json({error: errors.array()[0].msg})
 	}
 
 	try {
@@ -37,7 +37,7 @@ router.post('/signup', signupValidator, async (req, res) => {
 
 		await transporter.sendMail(signupEmail(email, name, user._id))
 	} catch (e) {
-		res.status(500).json({message: 'Упс... щось пішло не так'})
+		res.status(500).json({error: 'Упс... щось пішло не так'})
 	}
 })
 

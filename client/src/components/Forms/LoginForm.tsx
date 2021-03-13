@@ -1,10 +1,37 @@
-import React from 'react'
-import {Button, Col, Form, Input, Row} from 'antd'
+import React, {useContext, useEffect} from 'react'
+import {Button, Col, Form, Input, message, Row} from 'antd'
 import {Link} from 'react-router-dom'
+import {useDispatch, useSelector} from 'react-redux'
+import {actions} from '../../redux/auth/login/actions'
+import {AppStateType} from '@redux/rootReducer'
+import {AuthContext} from '../../context/AuthContext'
+
+export type LoginFormTypes = {
+    email: string,
+    password: string
+}
 
 export const LoginForm: React.FC = () => {
-    const onSubmit = () => {
+    const {loading, error, token, userId} = useSelector((state: AppStateType) => state.login)
+    const dispatch = useDispatch()
+    const {login} = useContext(AuthContext)
 
+    useEffect(() => {
+        if (error) {
+            message.error(error)
+            actions.loginError(null)
+        }
+    }, [error])
+
+    useEffect(() => {
+        if (token && userId) {
+            login({token, userId})
+            actions.loginSuccess({token: null, userId: null})
+        }
+    }, [login, token, userId])
+
+    const onSubmit = (values: LoginFormTypes) => {
+        dispatch(actions.loginRequest(values))
     }
 
     return (
@@ -26,7 +53,7 @@ export const LoginForm: React.FC = () => {
                         <Button
                             htmlType="submit"
                             type="primary"
-                            loading={false}
+                            loading={loading}
                         >Увійти</Button>
                     </Form.Item>
                 </Col>

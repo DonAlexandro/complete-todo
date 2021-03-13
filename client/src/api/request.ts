@@ -2,13 +2,12 @@ import {config} from './config'
 
 type MethodType = 'GET' | 'POST'
 
-type RequestReturnType = {
-	message?: string | undefined,
-	error?: string | undefined
-}
-
 // todo: change headers type any to something correct
-export const request = async (path: string, method = 'GET' as MethodType, body?: Record<string, any> | string, headers = {} as any): Promise<RequestReturnType> => {
+export async function request<T> (
+	path: string,
+	method = 'GET' as MethodType,
+	body?: Record<string, any> | string,
+	headers = {} as any): Promise<T> {
 	try {
 		if (headers && headers.authorization) {
 			headers.authorization = config.token

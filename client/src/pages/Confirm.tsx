@@ -1,9 +1,9 @@
-import {Spin} from 'antd'
+import {Button, Spin} from 'antd'
 import React, {useEffect} from 'react'
-import {useParams} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {AuthWrapper} from '../components/AuthWrapper'
-import {AppStateType} from "../redux/rootReducer"
+import {AppStateType} from '@redux/rootReducer'
 import {actions} from '../redux/auth/confirm/actions'
 
 type ConfirmRouterPropsType = {
@@ -21,14 +21,13 @@ export const Confirm: React.FC = () => {
     }, [dispatch, id])
 
     return (
-        <>
-            {loading ?
-                <Spin size="large" tip="Іде верифікація акаунту..."/>
-                :
-                <AuthWrapper title="Верифікація" subtitle={message || error}>
-
-                </AuthWrapper>
-            }
-        </>
+        loading ?
+            <Spin size="large" tip="Іде верифікація акаунту..."/>
+            :
+            <AuthWrapper title="Верифікація" subtitle={message || error}>
+                <Button type="primary" size="large">
+                    <Link to="/login">Увійти</Link>
+                </Button>
+            </AuthWrapper>
     )
 }

@@ -1,8 +1,14 @@
 import {combineReducers} from 'redux'
 import {signupReducer} from './auth/signup/reducer'
+import {confirmReducer} from './auth/confirm/reducer'
+import {loginReducer} from './auth/login/reducer'
+import {recoveryReducer} from './auth/recovery/reducer'
 
 export const rootReducer = combineReducers({
-	signup: signupReducer
+	signup: signupReducer,
+	confirm: confirmReducer,
+	login: loginReducer,
+	recovery: recoveryReducer
 })
 
 type RootReducerType = typeof rootReducer

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import {Button, Col, Form, Input, Row, message as toast} from 'antd'
 import {useDispatch, useSelector} from 'react-redux'
-import {useHistory} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import {actions} from '../../redux/auth/signup/actions'
 import {AppStateType} from '../../redux/rootReducer'
 
@@ -71,13 +71,14 @@ export const SignupForm: React.FC = () => {
             ]} validateTrigger={'onBlur'}>
                 <Input.Password placeholder="Повтори свій пароль"/>
             </Form.Item>
-            <Form.Item style={{marginBottom: 0}}>
+            <Form.Item>
                 <Button
                     htmlType="submit"
                     type="primary"
                     loading={loading}
                 >Зареєструватися</Button>
             </Form.Item>
+            <Link to="/login">Вже є акаунт?</Link>
         </Form>
     )
 }

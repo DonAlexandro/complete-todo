@@ -6,7 +6,7 @@ const {Title, Text} = Typography
 type AuthWrapperTypes = {
     children: ReactNode,
     title: string,
-    subtitle?: string | undefined
+    subtitle?: string | null
 }
 
 export const AuthWrapper: React.FC<AuthWrapperTypes> = ({children, title, subtitle}) => {

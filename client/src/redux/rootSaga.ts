@@ -3,6 +3,7 @@ import {signupSagaWatcher} from './auth/signup/sagas'
 import {confirmSagaWatcher} from './auth/confirm/sagas'
 import {loginSagaWatcher} from './auth/login/sagas'
 import {passwordSagaWatcher, recoverySagaWatcher, tokenSagaWatcher} from './auth/recovery/sagas'
+import {createSagaWatcher, deleteSagaWatcher, editSagaWatcher, fetchSagaWatcher} from './todo/sagas'
 
 export function* rootSaga(): Generator {
 	yield all([
@@ -11,6 +12,10 @@ export function* rootSaga(): Generator {
 		fork(loginSagaWatcher),
 		fork(recoverySagaWatcher),
 		fork(tokenSagaWatcher),
-		fork(passwordSagaWatcher)
+		fork(passwordSagaWatcher),
+		fork(createSagaWatcher),
+		fork(fetchSagaWatcher),
+		fork(deleteSagaWatcher),
+		fork(editSagaWatcher)
 	])
 }

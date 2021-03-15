@@ -1,7 +1,10 @@
-import React, {useContext} from 'react'
-import {Layout, Menu, Typography} from 'antd'
+import React, {ChangeEvent, useContext} from 'react'
+import {Form, Input, Layout, Menu, Typography} from 'antd'
 import {NavLink, useHistory} from 'react-router-dom'
-import {AuthContext} from "../context/AuthContext";
+import {AuthContext} from '../context/AuthContext'
+import {SearchOutlined} from '@ant-design/icons'
+import {useDispatch} from 'react-redux'
+import {actions} from '../redux/todo/actions'
 
 const {Header} = Layout
 const {Title} = Typography
@@ -14,6 +17,8 @@ export const Navbar: React.FC<NavbarTypes> = ({isAuthenticated}) => {
     const history = useHistory()
     const {logout} = useContext(AuthContext)
 
+    const dispatch = useDispatch()
+
     const logoutHandler = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault()
 
@@ -21,11 +26,24 @@ export const Navbar: React.FC<NavbarTypes> = ({isAuthenticated}) => {
         history.push('/login')
     }
 
+    const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
+        dispatch(actions.searchRequest(e.target.value))
+    }
+
     return (
         <Header style={{position: 'fixed', zIndex: 1, width: '100%'}} className="header">
             <div className="logo">
-                <Title className="title" level={4}>☑ Complete Todo</Title>
+                <Title className="title" level={5}>☑ Complete Todo</Title>
             </div>
+            {isAuthenticated &&
+                <div className="search">
+                    <Form>
+                        <Form.Item>
+                            <Input onChange={onSearch} prefix={<SearchOutlined />} allowClear/>
+                        </Form.Item>
+                    </Form>
+				</div>
+            }
             <Menu theme="dark" mode="horizontal">
                 {isAuthenticated ?
                     <>

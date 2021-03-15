@@ -5,13 +5,14 @@ import {Login} from '../pages/Login'
 import {Confirm} from '../pages/Confirm'
 import {Recovery} from '../pages/Recovery'
 import {Password} from '../pages/Password'
+import {Todos} from '../pages/Todos'
 
 export const useRoutes = (isAuthenticated: boolean) => {
 	if (isAuthenticated) {
 		return (
 			<Switch>
 				<Route path="/" exact>
-
+					<Todos />
 				</Route>
 				<Redirect to="/"/>
 			</Switch>

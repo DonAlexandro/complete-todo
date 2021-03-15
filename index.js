@@ -9,6 +9,7 @@ app.use(express.json({extended: true}))
 app.use(express.urlencoded({extended: true}))
 
 app.use('/api/auth', require('./routes/auth'))
+app.use('/api/todos', require('./routes/todo'))
 
 const PORT = keys.port || 5000
 

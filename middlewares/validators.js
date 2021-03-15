@@ -1,6 +1,7 @@
 const {body} = require('express-validator')
 const bcrypt = require('bcrypt')
 const User = require('../models/user')
+const Todo = require('../models/todo')
 
 exports.signupValidator = [
 	body('email')
@@ -113,4 +114,24 @@ exports.passwordValidator = [
 
 			return true
 		}),
+]
+
+exports.todoValidator = [
+	body('title')
+		.notEmpty()
+		.trim()
+]
+
+exports.deleteTodoValidator = [
+	body('id')
+		.notEmpty()
+		.custom(async value => {
+			const todo = await Todo.findById(value)
+
+			if (!todo) {
+				return false
+			}
+
+			return true
+		})
 ]

@@ -1,12 +1,14 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const path = require('path')
+const cookieParser = require('cookie-parser')
 const keys = require('./keys')
 
 const app = express()
 
 app.use(express.json({extended: true}))
 app.use(express.urlencoded({extended: true}))
+
+app.use(cookieParser())
 
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/todos', require('./routes/todo'))

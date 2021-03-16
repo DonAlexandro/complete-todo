@@ -2,6 +2,7 @@ import React from 'react'
 import {Form, Input} from 'antd'
 import {LoadingOutlined, PlusOutlined} from '@ant-design/icons'
 import {useDispatch, useSelector} from 'react-redux'
+import {useTranslation} from 'react-i18next'
 import {actions} from '../../redux/todo/actions'
 import {AppStateType} from '@redux/rootReducer'
 
@@ -12,6 +13,7 @@ export type TodoFormTypes = {
 export const TodoForm: React.FC = () => {
     const {loading} = useSelector((state: AppStateType) => state.todo)
     const dispatch = useDispatch()
+    const {t} = useTranslation()
 
     const [form] = Form.useForm()
 
@@ -27,7 +29,7 @@ export const TodoForm: React.FC = () => {
             <Form.Item name="title">
                 <Input
                     addonBefore={loading ? <LoadingOutlined /> : <PlusOutlined />}
-                    placeholder="Додати задачу"
+                    placeholder={t('todo_placeholder')}
                     size="large"
                     disabled={loading}
                 />

@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {message as toast} from 'antd'
+import {useTranslation} from 'react-i18next'
 import {AuthWrapper} from '../components/AuthWrapper'
 import {AppStateType} from '../redux/rootReducer'
 import {actions as signupActions} from '../redux/auth/signup/actions'
@@ -11,30 +12,31 @@ export const Login: React.FC = () => {
     const signup = useSelector((state: AppStateType) => state.signup)
     const recovery = useSelector((state: AppStateType) => state.recovery)
     const dispatch = useDispatch()
+    const {t} = useTranslation()
 
     useEffect(() => {
         if (signup.message) {
-            toast.info(signup.message, 3)
+            toast.info(t(signup.message), 3)
             dispatch(signupActions.signupSuccess(null))
         }
-    }, [signup, dispatch])
+    }, [signup, dispatch, t])
 
     useEffect(() => {
         if (recovery.message) {
-            toast.info(recovery.message, 3)
+            toast.info(t(recovery.message), 3)
             dispatch(recoveryActions.recoverySuccess(null))
         }
-    }, [recovery, dispatch])
+    }, [recovery, dispatch, t])
 
     useEffect(() => {
         if (recovery.error) {
-            toast.error(recovery.error, 3)
+            toast.error(t(recovery.error), 3)
             dispatch(recoveryActions.responseError(null))
         }
-    }, [recovery, dispatch])
+    }, [recovery, dispatch, t])
 
     return (
-        <AuthWrapper title="Вхід">
+        <AuthWrapper title={t('login')}>
             <LoginForm />
         </AuthWrapper>
     )

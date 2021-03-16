@@ -9,7 +9,6 @@ export const useAuth = () => {
         setToken(data.token)
 
         localStorage.setItem('userData', JSON.stringify(data))
-
     }, [])
 
     const logout = useCallback(() => {

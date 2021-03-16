@@ -2,9 +2,10 @@ import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {Button, Checkbox, List, Typography, Modal, Tooltip} from 'antd'
 import {DeleteFilled} from '@ant-design/icons'
+import {useTranslation} from 'react-i18next'
 import {TodoType} from '@redux/todo/types'
 import {actions} from '../redux/todo/actions'
-import {AppStateType} from "@redux/rootReducer";
+import {AppStateType} from '@redux/rootReducer'
 
 const {Paragraph} = Typography
 const {confirm} = Modal
@@ -16,13 +17,14 @@ type TodoListItemTypes = {
 export const TodoListItem: React.FC<TodoListItemTypes> = ({item}) => {
     const {loading} = useSelector((state: AppStateType) => state.todo)
     const dispatch = useDispatch()
+    const {t} = useTranslation()
 
     const confirmDelete = () => {
         confirm({
             title: item.title,
-            content: 'Ти дійсно хочеш видалити це завдання? Повернути його вже буде не можливо',
-            okText: 'Видалити',
-            cancelText: 'Скасувати',
+            content: t('delete_warning'),
+            okText: t('delete'),
+            cancelText: t('cancel'),
             okButtonProps: {
                 danger: true
             },
@@ -44,7 +46,7 @@ export const TodoListItem: React.FC<TodoListItemTypes> = ({item}) => {
     return (
         <List.Item>
             <div style={{display: 'flex', alignItems: 'flex-end'}}>
-                <Tooltip title="Відмітити як завершене">
+                <Tooltip title={t('mark_as_done')}>
                     <Checkbox
                         onChange={() => checkTask(!item.done)}
                         checked={item.done}
@@ -52,7 +54,7 @@ export const TodoListItem: React.FC<TodoListItemTypes> = ({item}) => {
                     />
                 </Tooltip>
                 <Paragraph
-                    editable={{onChange: editTask, tooltip: 'Змінити'}}
+                    editable={{onChange: editTask, tooltip: t('edit')}}
                     style={{marginBottom: 0, marginLeft: '.5rem'}}
                 >{item.title}</Paragraph>
             </div>

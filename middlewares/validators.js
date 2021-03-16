@@ -5,31 +5,31 @@ const Todo = require('../models/todo')
 
 exports.signupValidator = [
 	body('email')
-		.notEmpty().withMessage('Не забувай про Email')
-		.isEmail().withMessage('Email не коректний')
+		.notEmpty().withMessage('email_required')
+		.isEmail().withMessage('email_invalid')
 		.normalizeEmail()
 		.trim()
 		.custom(async value => {
 			const candidate = await User.findOne({email: value})
 
 			if (candidate) {
-				return Promise.reject('Такий Email вже зайнятий')
+				return Promise.reject('email_busy')
 			}
 		}),
 	body('password')
-		.isLength({min: 8}).withMessage('Пароль повинен містити не менше 8 символів')
+		.isLength({min: 8}).withMessage('password_length')
 		.isAlphanumeric()
 		.trim(),
 	body('confirm')
 		.custom((value, {req}) => {
 			if (value !== req.body.password) {
-				throw new Error('Паролі не співпадають')
+				throw new Error('confirm_invalid')
 			}
 
 			return true
 		}),
 	body('name')
-		.notEmpty().withMessage('То як тебе звати?')
+		.notEmpty().withMessage('name_required')
 		.trim()
 ]
 
@@ -39,40 +39,40 @@ exports.confirmValidator = [
 			const user = await User.findById(value)
 
 			if (!user) {
-				return Promise.reject('Ми не змогли знайти твій акаунт, щоб підтвердити його')
+				return Promise.reject('account_not_found')
 			}
 		})
 		.custom(async value => {
 			const user = await User.findById(value)
 
 			if (user.emailVerified) {
-				return Promise.reject('Твій акаунт уже верифіковано!')
+				return Promise.reject('account_verified')
 			}
 		})
 ]
 
 exports.loginValidator = [
 	body('email')
-		.notEmpty().withMessage('Не забувай про Email')
-		.isEmail().withMessage('Email не коректний')
+		.notEmpty().withMessage('email_required')
+		.isEmail().withMessage('email_invalid')
 		.normalizeEmail()
 		.trim()
 		.custom(async value => {
 			const user = await User.findOne({email: value})
 
 			if (!user) {
-				return Promise.reject('Користувач з таким Email-ом не зареєстрований')
+				return Promise.reject('email_not_found')
 			}
 		})
 		.custom(async value => {
 			const user = await User.findOne({email: value})
 
 			if (!user.emailVerified) {
-				return Promise.reject('Ви не можете увійти, бо не верифікували свій акаунт')
+				return Promise.reject('account_not_verified')
 			}
 		}),
 	body('password')
-		.isLength({min: 8}).withMessage('Пароль повинен містити не менше 8 символів')
+		.isLength({min: 8}).withMessage('password_length')
 		.isAlphanumeric()
 		.trim()
 		.custom(async (value, {req}) => {
@@ -81,35 +81,35 @@ exports.loginValidator = [
 			const isSame = await bcrypt.compare(value, user.password)
 
 			if (!isSame) {
-				return Promise.reject('Невірний пароль')
+				return Promise.reject('password_invalid')
 			}
 		})
 ]
 
 exports.recoveryValidator = [
 	body('email')
-		.notEmpty().withMessage('Не забувай про Email')
-		.isEmail().withMessage('Email не коректний')
+		.notEmpty().withMessage('email_required')
+		.isEmail().withMessage('email_invalid')
 		.normalizeEmail()
 		.trim()
 		.custom(async value => {
 			const user = await User.findOne({email: value})
 
 			if (!user) {
-				return Promise.reject('Користувача з таким Email-ом не знайдено')
+				return Promise.reject('email_not_found')
 			}
 		})
 ]
 
 exports.passwordValidator = [
 	body('password')
-		.isLength({min: 8}).withMessage('Пароль повинен містити не менше 8 символів')
+		.isLength({min: 8}).withMessage('password_length')
 		.isAlphanumeric()
 		.trim(),
 	body('confirm')
 		.custom((value, {req}) => {
 			if (value !== req.body.password) {
-				throw new Error('Паролі не співпадають')
+				throw new Error('confirm_invalid')
 			}
 
 			return true

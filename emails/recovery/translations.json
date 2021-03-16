@@ -1,0 +1,22 @@
+{
+    "en": {
+        "subject": "Password restore on Complete Todo",
+        "body": {
+            "title": "Hi",
+            "intro": "You have applied for a password reset",
+            "instructions": "Push the button and let's go!",
+            "button": "Restore password",
+            "outro": "If it wasn't you, ignore this message"
+        }
+    },
+    "ua": {
+        "subject": "Відновлення паролю на Complete Todo",
+        "body": {
+            "title": "Привіт",
+            "intro": "З твого акаунта надійшов запит на відновлення паролю",
+            "instructions": "Жми на кнопку і гайда!",
+            "button": "Відновити пароль",
+            "outro": "Якщо це був не ти, проігноруй дане повідомлення"
+        }
+    }
+}

@@ -42,11 +42,11 @@ router.post('/signup', signupValidator, async (req, res) => {
 
 		await user.save()
 
-		res.json({message: 'Тепер, щоб увійти, верифікуй свій акаунт. Всі деталі у листі, який вже у тебе на пошті'})
+		res.json({message: 'signup_success'})
 
-		await transporter.sendMail(signupEmail(email, name, user._id))
+		await transporter.sendMail(signupEmail(email, name, user._id, req.cookies.language || 'en'))
 	} catch (e) {
-		res.status(500).json({error: 'Упс... щось пішло не так'})
+		res.status(500).json({error: 'server_error'})
 	}
 })
 
@@ -64,9 +64,9 @@ router.post('/confirm', confirmValidator, async (req, res) => {
 
 		await user.save()
 
-		res.json({message: 'Дякуємо, за верифікацію! Тепер ти можеш повноцінно використовувати наш сервіс'})
+		res.json({message: 'verification_success'})
 	} catch (e) {
-		res.status(500).json({error: 'Упс... щось пішло не так'})
+		res.status(500).json({error: 'server_error'})
 	}
 })
 
@@ -87,7 +87,7 @@ router.post('/login', loginValidator, async (req, res) => {
 
 		res.json({token, userId})
 	} catch (e) {
-		res.status(500).json({error: 'Упс... щось пішло не так'})
+		res.status(500).json({error: 'server_error'})
 	}
 })
 
@@ -100,7 +100,7 @@ router.post('/recovery', recoveryValidator, async (req, res) => {
 
 	crypto.randomBytes(32, async (err, buffer) => {
 		if (err) {
-			return res.status(500).json({error: 'Упс... щось пішло не так'})
+			return res.status(500).json({error: 'server_error'})
 		}
 
 		const token = buffer.toString('hex')
@@ -114,15 +114,15 @@ router.post('/recovery', recoveryValidator, async (req, res) => {
 
 		await user.save()
 
-		res.json({message: 'Заявка на відновлення паролю уже в тебе на пошті!'})
+		res.json({message: 'recover_success'})
 
-		await transporter.sendMail(recoveryEmail(email, user.name, token))
+		await transporter.sendMail(recoveryEmail(email, user.name, token, req.cookies.language || 'en'))
 	})
 })
 
 router.get('/password/:token', async (req, res) => {
 	if (!req.params.token) {
-		return res.status(400).json({error: 'Упс... щось пішло не так'})
+		return res.status(400).json({error: 'server_error'})
 	}
 
 	try {
@@ -132,12 +132,12 @@ router.get('/password/:token', async (req, res) => {
 		})
 
 		if (!user) {
-			return res.status(400).json({error: 'Пароль не відновлено, бо твоє посилання не дійсне'})
+			return res.status(400).json({error: 'recover_error'})
 		}
 
 		res.json({userId: user._id.toString()})
 	} catch (e) {
-		res.status(500).json({error: 'Упс... щось пішло не так'})
+		res.status(500).json({error: 'server_error'})
 	}
 })
 
@@ -164,12 +164,12 @@ router.post('/password', passwordValidator, async (req, res) => {
 
 			await user.save()
 
-			res.json({message: 'Ти успішно змінив свій пароль!'})
+			res.json({message: 'password_success'})
 		} else {
-			return res.status(400).json({error: 'Пароль не відновлено, бо твоє посилання не дійсне'})
+			return res.status(400).json({error: 'recover_error'})
 		}
 	} catch (e) {
-		res.status(500).json({error: 'Упс... щось пішло не так'})
+		res.status(500).json({error: 'server_error'})
 	}
 })
 

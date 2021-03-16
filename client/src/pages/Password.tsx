@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
+import {useTranslation} from 'react-i18next'
 import {AuthWrapper} from '../components/AuthWrapper'
 import {PasswordForm} from '../components/Forms/PasswordForm'
 import {actions} from '../redux/auth/recovery/actions'
@@ -13,6 +14,7 @@ export const Password: React.FC = () => {
     const token = useParams<PasswordRouterPropsTypes>().token
 
     const dispatch = useDispatch()
+    const {t} = useTranslation()
 
     useEffect(() => {
         if (token) {
@@ -21,7 +23,7 @@ export const Password: React.FC = () => {
     }, [token, dispatch])
 
     return (
-        <AuthWrapper title="Новий пароль" subtitle="Введи новий пароль і запиши його, щоб не забувати надалі">
+        <AuthWrapper title={t('new_password')} subtitle={t('new_password_subtitle')}>
             <PasswordForm />
         </AuthWrapper>
     )

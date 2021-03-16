@@ -13,7 +13,7 @@ router.post('/create', todoValidator, async (req, res) => {
 
 		res.json({todo})
 	} catch (e) {
-		res.status(500).json({error: 'Упс... щось пішло не так'})
+		res.status(500).json({error: 'server_error'})
 	}
 })
 
@@ -21,9 +21,11 @@ router.get('/', async (req, res) => {
 	try {
 		const todos = await Todo.find()
 
+		console.log(req.cookies)
+
 		res.json({todos})
 	} catch (e) {
-		res.status(500).json({error: 'Упс... щось пішло не так'})
+		res.status(500).json({error: 'server_error'})
 	}
 })
 
@@ -35,7 +37,7 @@ router.post('/delete', deleteTodoValidator, async (req, res) => {
 
 		res.json({id})
 	} catch (e) {
-		res.status(500).json({error: 'Упс... щось пішло не так'})
+		res.status(500).json({error: 'server_error'})
 	}
 })
 
@@ -46,7 +48,7 @@ router.post('/edit', async (req, res) => {
 		const todo = await Todo.findById(id)
 
 		if (!todo) {
-			return res.status(400).json({error: 'Завдвання не знайдено'})
+			return res.status(400).json({error: 'task_not_found'})
 		}
 
 		const toChange = {
@@ -60,7 +62,7 @@ router.post('/edit', async (req, res) => {
 
 		res.json({todo})
 	} catch (e) {
-		res.status(500).json({error: 'Упс... щось пішло не так'})
+		res.status(500).json({error: 'server_error'})
 	}
 })
 

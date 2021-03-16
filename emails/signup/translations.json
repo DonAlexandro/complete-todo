@@ -1,0 +1,20 @@
+{
+    "en": {
+        "subject": "Confirm account on Complete Todo",
+        "body": {
+            "title": "Hi",
+            "intro": "We are glad to see you on our service!",
+            "instructions": "Just push the button follow and everything is done!",
+            "button": "Confirm"
+        }
+    },
+    "ua": {
+        "subject": "Підтверди акаунт на Complete Todo",
+        "body": {
+            "title": "Привіт",
+            "intro": "Раді, що ти вирішив обрати наш сервіс!",
+            "instructions": "Нажми на кнопку нижче і все готово!",
+            "button": "Підтвердити"
+        }
+    }
+}

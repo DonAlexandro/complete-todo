@@ -21,9 +21,17 @@ router.post('/create', auth, todoValidator, async (req, res) => {
 
 router.get('/', auth, async (req, res) => {
 	try {
-		const todos = await Todo.find({author: req.user.userId})
+		const perPage = 3
+		const page = req.query.page || 1
 
-		res.json({todos})
+		const todos = await Todo
+			.find({author: req.user.userId})
+			.skip((perPage * page) - perPage)
+			.limit(perPage)
+
+		const todosCount = await Todo.find({author: req.user.userId}).countDocuments()
+
+		res.json({todos, todosCount})
 	} catch (e) {
 		res.status(500).json({error: 'server_error'})
 	}

@@ -19,7 +19,7 @@ module.exports = (req, res, next) => {
 
 		next()
 	} catch (e) {
-		req.cookies.token = undefined
+		res.clearCookie('token')
 		res.status(401).json({error: 'session_expired'})
 	}
 }

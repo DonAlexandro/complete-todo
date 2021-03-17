@@ -6,8 +6,13 @@ export const create = (body: TodoFormTypes) => {
     return request<TodoType>('/api/todos/create', 'POST', body, {authorization: true})
 }
 
-export const fetchTodos = () => {
-    return request<TodoType[]>('/api/todos', 'GET', null, {authorization: true})
+export const fetchTodos = (page: number) => {
+    return request<any>(
+        `/api/todos?page=${page}`,
+        'GET',
+        null,
+        {authorization: true}
+    )
 }
 
 export const deleteTodo = (id: string) => {

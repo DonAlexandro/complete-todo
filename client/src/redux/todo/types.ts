@@ -39,12 +39,18 @@ export type CreateSuccessType = {
 }
 
 export type FetchRequestType = {
-    type: typeof FETCH_REQUEST
+    type: typeof FETCH_REQUEST,
+    payload: number
+}
+
+export type FetchSuccessPayloadType = {
+    todos: TodoType[],
+    todosCount: number
 }
 
 export type FetchSuccessType = {
     type: typeof FETCH_SUCCESS,
-    payload: TodoType[]
+    payload: FetchSuccessPayloadType
 }
 
 export type DeleteRequestType = {

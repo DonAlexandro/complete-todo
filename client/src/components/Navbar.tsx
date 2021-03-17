@@ -26,7 +26,7 @@ export const Navbar: React.FC<NavbarTypes> = ({isAuthenticated}) => {
     const logoutHandler = () => {
         logout()
         history.push('/login')
-        dispatch(actions.fetchSuccess([]))
+        dispatch(actions.fetchSuccess({todosCount: 0, todos: []}))
     }
 
     const onSearch = (e: ChangeEvent<HTMLInputElement>) => {

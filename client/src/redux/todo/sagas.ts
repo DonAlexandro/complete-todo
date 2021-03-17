@@ -6,7 +6,7 @@ import {
     DELETE_REQUEST,
     DeleteRequestType, EDIT_REQUEST,
     EditRequestType,
-    FETCH_REQUEST
+    FETCH_REQUEST, FetchRequestType
 } from './types'
 import {create, deleteTodo, editTodo, fetchTodos} from '../../api/rest/todo'
 
@@ -22,13 +22,13 @@ function* createSagaWorker(action: CreateRequestType): Generator<StrictEffect> {
     }
 }
 
-function* fetchSagaWorker(): Generator<StrictEffect> {
+function* fetchSagaWorker(action: FetchRequestType): Generator<StrictEffect> {
     yield put(actions.baseRequest())
 
     try {
-        const data: any = yield call(fetchTodos)
+        const data: any = yield call(fetchTodos, action.payload)
 
-        yield put(actions.fetchSuccess(data.todos))
+        yield put(actions.fetchSuccess(data))
     } catch (e) {
         yield put(actions.errorResponse(e.message))
     }

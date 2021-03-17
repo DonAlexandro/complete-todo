@@ -18,7 +18,7 @@ import {
     ErrorResponseType,
     FETCH_REQUEST,
     FETCH_SUCCESS,
-    FetchRequestType,
+    FetchRequestType, FetchSuccessPayloadType,
     FetchSuccessType, SEARCH_REQUEST,
     SearchRequestType,
     TodoType
@@ -33,8 +33,9 @@ export const actions = {
         type: CREATE_REQUEST,
         payload: body
     }),
-    fetchRequest: (): FetchRequestType => ({
+    fetchRequest: (page: number): FetchRequestType => ({
         type: FETCH_REQUEST,
+        payload: page
     }),
     deleteRequest: (id: string): DeleteRequestType => ({
         type: DELETE_REQUEST,
@@ -48,9 +49,9 @@ export const actions = {
         type: SEARCH_REQUEST,
         payload: title
     }),
-    fetchSuccess: (todos: TodoType[]): FetchSuccessType => ({
+    fetchSuccess: (data: FetchSuccessPayloadType): FetchSuccessType => ({
         type: FETCH_SUCCESS,
-        payload: todos
+        payload: data
     }),
     createSuccess: (todo: TodoType): CreateSuccessType => ({
         type: CREATE_SUCCESS,

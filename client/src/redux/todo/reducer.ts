@@ -14,7 +14,8 @@ const initialState = {
     loading: false,
     error: null as string | null,
     tasks: [] as Array<TodoType>,
-    foundTasks: [] as TodoType[]
+    foundTasks: [] as TodoType[],
+    todosCount: 0
 }
 
 type InitialStateType = typeof initialState
@@ -27,7 +28,14 @@ export const todoReducer = (state = initialState, action: ActionType): InitialSt
         case CREATE_SUCCESS:
             return {...state, loading: false, tasks: [...state.tasks, action.payload]}
         case FETCH_SUCCESS:
-            return {...state, loading: false, tasks: action.payload}
+            const {todos, todosCount} = action.payload
+
+            return {
+                ...state,
+                loading: false,
+                tasks: [...state.tasks, ...todos],
+                todosCount
+            }
         case DELETE_SUCCESS:
             return {...state, loading: false, tasks: state.tasks.filter(task => task._id.toString() !== action.payload.toString())}
         case EDIT_SUCCESS:

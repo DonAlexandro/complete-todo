@@ -36,7 +36,9 @@ export const TodoListItem: React.FC<TodoListItemTypes> = ({item}) => {
     }
 
     const editTask = (title: string) => {
-        dispatch(actions.editRequest({id: item._id, title}))
+        if (title.length && title !== item.title) {
+            dispatch(actions.editRequest({id: item._id, title}))
+        }
     }
 
     const checkTask = (done: boolean) => {
@@ -56,6 +58,7 @@ export const TodoListItem: React.FC<TodoListItemTypes> = ({item}) => {
                 <Paragraph
                     editable={{onChange: editTask, tooltip: t('edit')}}
                     style={{marginBottom: 0, marginLeft: '.5rem'}}
+                    delete={item.done}
                 >{item.title}</Paragraph>
             </div>
             <Button danger icon={<DeleteFilled />} onClick={confirmDelete}/>

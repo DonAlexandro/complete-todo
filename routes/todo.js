@@ -1,12 +1,14 @@
 const {Router} = require('express')
 const {todoValidator, deleteTodoValidator} = require('../middlewares/validators')
 const Todo = require('../models/todo')
+const auth = require('../middlewares/auth')
 const router = Router()
 
-router.post('/create', todoValidator, async (req, res) => {
+router.post('/create', auth, todoValidator, async (req, res) => {
 	try {
 		const todo = new Todo({
-			title: req.body.title
+			title: req.body.title,
+			author: req.user.userId
 		})
 
 		await todo.save()
@@ -17,11 +19,9 @@ router.post('/create', todoValidator, async (req, res) => {
 	}
 })
 
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
 	try {
-		const todos = await Todo.find()
-
-		console.log(req.cookies)
+		const todos = await Todo.find({author: req.user.userId})
 
 		res.json({todos})
 	} catch (e) {
@@ -29,11 +29,14 @@ router.get('/', async (req, res) => {
 	}
 })
 
-router.post('/delete', deleteTodoValidator, async (req, res) => {
+router.post('/delete', auth, deleteTodoValidator, async (req, res) => {
 	try {
 		const {id} = req.body
 
-		await Todo.deleteOne({_id: id})
+		await Todo.deleteOne({
+			_id: id,
+			author: req.user.userId
+		})
 
 		res.json({id})
 	} catch (e) {
@@ -41,11 +44,14 @@ router.post('/delete', deleteTodoValidator, async (req, res) => {
 	}
 })
 
-router.post('/edit', async (req, res) => {
+router.post('/edit', auth, async (req, res) => {
 	try {
 		const {id, title, done} = req.body
 
-		const todo = await Todo.findById(id)
+		const todo = await Todo.findOne({
+			_id: id,
+			author: req.user.userId
+		})
 
 		if (!todo) {
 			return res.status(400).json({error: 'task_not_found'})

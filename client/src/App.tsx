@@ -1,6 +1,7 @@
 import React from 'react'
 import {BrowserRouter as Router} from 'react-router-dom'
-import {Layout, Spin} from 'antd'
+import {Layout} from 'antd'
+import {useCookies} from 'react-cookie'
 import {useRoutes} from './hooks/routes'
 import {Navbar} from './components/Navbar'
 import {useAuth} from './hooks/useAuth'
@@ -9,17 +10,14 @@ import {AuthContext} from './context/AuthContext'
 const { Content } = Layout
 
 const App: React.FC = () => {
-    const {ready, token, login, logout} = useAuth()
+    const {login, logout} = useAuth()
+    const [cookies] = useCookies()
 
-    const isAuthenticated = !!token
+    const isAuthenticated = !!cookies?.token
     const routes = useRoutes(isAuthenticated)
 
-    if (!ready) {
-        return <Spin size="large"/>
-    }
-
     return (
-        <AuthContext.Provider value={{token, login, logout}}>
+        <AuthContext.Provider value={{login, logout}}>
             <Router>
                 <Layout>
                     <Navbar isAuthenticated={isAuthenticated}/>

@@ -1,16 +1,23 @@
 import {config} from './config'
 
 type MethodType = 'GET' | 'POST'
+type BodyType = Record<string, any> | string | null
 
-// todo: change headers type any to something correct
+// type UserHeadersTypes = {
+// 	authorization?: boolean | string,
+// 	'Content-Type'?: string
+// }
+//
+// type HeadersTypes = UserHeadersTypes & HeadersInit
+
 export async function request<T> (
 	path: string,
 	method = 'GET' as MethodType,
-	body?: Record<string, any> | string,
+	body = null as BodyType,
 	headers = {} as any): Promise<T> {
 	try {
 		if (headers && headers.authorization) {
-			headers.authorization = config.token
+			headers.authorization = `Bearer ${config.getToken()}`
 		}
 
 		if (body) {
@@ -22,7 +29,7 @@ export async function request<T> (
 		const data = await response.json()
 
 		if (!response.ok) {
-			throw new Error(data.error || 'Ой... на жаль, щось пішло не так')
+			throw new Error(data.error || 'server_error')
 		}
 
 		return data

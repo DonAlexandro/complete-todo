@@ -21,7 +21,7 @@ router.post('/create', auth, todoValidator, async (req, res) => {
 
 router.get('/', auth, async (req, res) => {
 	try {
-		const perPage = 3
+		const perPage = 10
 		const page = req.query.page || 1
 
 		const todos = await Todo

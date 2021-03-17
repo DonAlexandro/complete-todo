@@ -3,6 +3,7 @@ import {
     CREATE_SUCCESS,
     DELETE_SUCCESS,
     EDIT_SUCCESS,
+    ERROR_RESPONSE,
     FETCH_SUCCESS,
     SEARCH_REQUEST,
     TodoType
@@ -26,18 +27,28 @@ export const todoReducer = (state = initialState, action: ActionType): InitialSt
         case BASE_REQUEST:
             return {...state, loading: true}
         case CREATE_SUCCESS:
-            return {...state, loading: false, tasks: [...state.tasks, action.payload]}
+            return {
+                ...state,
+                loading: false,
+                tasks: [...state.tasks, action.payload],
+                todosCount: state.todosCount + 1
+            }
         case FETCH_SUCCESS:
             const {todos, todosCount} = action.payload
 
             return {
                 ...state,
                 loading: false,
-                tasks: [...state.tasks, ...todos],
+                tasks: todos.length ? [...state.tasks, ...todos] : [],
                 todosCount
             }
         case DELETE_SUCCESS:
-            return {...state, loading: false, tasks: state.tasks.filter(task => task._id.toString() !== action.payload.toString())}
+            return {
+                ...state,
+                loading: false,
+                tasks: state.tasks.filter(task => task._id.toString() !== action.payload.toString()),
+                todosCount: state.todosCount - 1
+            }
         case EDIT_SUCCESS:
             return {...state, loading: false, tasks: state.tasks.map(task => {
                 if (task._id === action.payload._id) {
@@ -52,6 +63,8 @@ export const todoReducer = (state = initialState, action: ActionType): InitialSt
                 loading: false,
                 foundTasks: state.tasks.filter(task => task.title.toLowerCase().includes(action.payload.toLowerCase()))
             }
+        case ERROR_RESPONSE:
+            return {...state, loading: false, error: action.payload}
         default: return state
     }
 }

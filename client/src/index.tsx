@@ -11,7 +11,7 @@ import './i18n'
 ReactDOM.render(
     <Provider store={store}>
         <CookiesProvider>
-            <Suspense fallback={<Spin size="large"/>}>
+            <Suspense fallback={<div className="preloader"><Spin size="large"/></div>}>
                 <App />
             </Suspense>
         </CookiesProvider>

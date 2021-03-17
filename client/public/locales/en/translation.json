@@ -43,5 +43,6 @@
     "server_error": "Oops... something went wrong",
     "recover_success": "You already have a request for password recovery on the Email!",
     "recover_error": "Password not recovered because your link is invalid",
-    "task_not_found": "Task haven't been found"
+    "task_not_found": "Task haven't been found",
+    "session_expired": "Your session has ended. Re-login in the application"
 }

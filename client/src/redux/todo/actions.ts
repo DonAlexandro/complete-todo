@@ -23,7 +23,7 @@ import {
     SearchRequestType,
     TodoType
 } from './types'
-import {TodoFormTypes} from '@components/Forms/TodoForm'
+import {TodoFormTypes} from '../../components/Forms/TodoForm'
 
 export const actions = {
     baseRequest: (): BaseRequestType => ({

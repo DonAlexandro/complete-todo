@@ -4,7 +4,7 @@ import {useTranslation} from 'react-i18next'
 import {useSelector} from 'react-redux'
 import {TodoForm} from '../components/Forms/TodoForm'
 import {TodoList} from '../components/TodoList'
-import {AppStateType} from '@redux/rootReducer'
+import {AppStateType} from '../redux/rootReducer'
 
 const {Title} = Typography
 

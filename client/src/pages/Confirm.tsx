@@ -4,7 +4,7 @@ import {Link, useParams} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {useTranslation} from 'react-i18next'
 import {AuthWrapper} from '../components/AuthWrapper'
-import {AppStateType} from '@redux/rootReducer'
+import {AppStateType} from '../redux/rootReducer'
 import {actions} from '../redux/auth/confirm/actions'
 
 type ConfirmRouterPropsType = {

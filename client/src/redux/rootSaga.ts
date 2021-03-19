@@ -1,11 +1,11 @@
-import {all, fork} from 'redux-saga/effects'
+import {all, fork, ForkEffect} from 'redux-saga/effects'
 import {signupSagaWatcher} from './auth/signup/sagas'
 import {confirmSagaWatcher} from './auth/confirm/sagas'
 import {loginSagaWatcher} from './auth/login/sagas'
 import {passwordSagaWatcher, recoverySagaWatcher, tokenSagaWatcher} from './auth/recovery/sagas'
 import {createSagaWatcher, deleteSagaWatcher, editSagaWatcher, fetchSagaWatcher} from './todo/sagas'
 
-export function* rootSaga(): Generator {
+export function* rootSaga() {
 	yield all([
 		fork(signupSagaWatcher),
 		fork(confirmSagaWatcher),
@@ -17,5 +17,5 @@ export function* rootSaga(): Generator {
 		fork(fetchSagaWatcher),
 		fork(deleteSagaWatcher),
 		fork(editSagaWatcher)
-	])
+	] as ForkEffect[])
 }

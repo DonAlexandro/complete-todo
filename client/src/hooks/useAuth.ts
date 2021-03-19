@@ -3,7 +3,7 @@ import {useCookies} from 'react-cookie'
 import {LoginDataSuccessType} from '../redux/auth/login/types'
 
 export const useAuth = () => {
-    const [token, setToken] = useState(null)
+    const [token, setToken] = useState<string | null>(null)
     const [cookies, setCookie, removeCookie] = useCookies(['token'])
 
     const login = useCallback((data: LoginDataSuccessType) => {

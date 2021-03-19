@@ -5,7 +5,6 @@ import {confirm} from '../../../api/rest/auth'
 
 function* confirmSagaWorker(action: ConfirmRequestType): Generator<StrictEffect> {
     try {
-        // todo: change any to something correct
         const data: any = yield call(confirm, action.payload)
 
         yield put(actions.confirmSuccess(data.message))

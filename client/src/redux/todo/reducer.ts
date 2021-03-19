@@ -8,7 +8,7 @@ import {
     SEARCH_REQUEST,
     TodoType
 } from './types'
-import {InferActionsTypes} from '@redux/store'
+import {InferActionsTypes} from '../store'
 import {actions} from './actions'
 
 const initialState = {

@@ -1,4 +1,4 @@
-import {InferActionsTypes} from '@redux/store'
+import {InferActionsTypes} from '../../store'
 import {actions} from './actions'
 import {
     PASSWORD_REQUEST,

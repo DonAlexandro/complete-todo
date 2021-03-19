@@ -4,7 +4,7 @@ import {LoadingOutlined, PlusOutlined} from '@ant-design/icons'
 import {useDispatch, useSelector} from 'react-redux'
 import {useTranslation} from 'react-i18next'
 import {actions} from '../../redux/todo/actions'
-import {AppStateType} from '@redux/rootReducer'
+import {AppStateType} from '../../redux/rootReducer'
 
 export type TodoFormTypes = {
     title: string

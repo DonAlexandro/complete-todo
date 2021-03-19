@@ -1,4 +1,4 @@
-export type BaseResponseType = {
-    error?: string | null,
-    message?: string | null
+export interface BaseResponseType {
+    error: string,
+    message: string
 }

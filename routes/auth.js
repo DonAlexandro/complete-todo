@@ -18,8 +18,7 @@ const recoveryEmail = require('../emails/recovery')
 const router = Router()
 
 const transporter = nodemailer.createTransport({
-	host: keys.smtpHost,
-	port: keys.smtpPort,
+	service: 'gmail',
 	auth: {
 		user: keys.smtpUser,
 		pass: keys.smtpPass

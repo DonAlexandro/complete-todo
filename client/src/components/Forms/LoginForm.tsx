@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {useTranslation} from 'react-i18next'
 import {actions} from '../../redux/auth/login/actions'
-import {AppStateType} from '@redux/rootReducer'
+import {AppStateType} from '../../redux/rootReducer'
 import {AuthContext} from '../../context/AuthContext'
 
 export type LoginFormTypes = {

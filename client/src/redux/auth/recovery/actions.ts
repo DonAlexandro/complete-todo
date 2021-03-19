@@ -1,4 +1,4 @@
-import {RecoveryFormTypes} from '@components/Forms/RecoveryForm'
+import {RecoveryFormTypes} from '../../../components/Forms/RecoveryForm'
 import {
     PASSWORD_REQUEST,
     PASSWORD_SUCCESS, PasswordBodyTypes,

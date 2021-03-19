@@ -1,4 +1,4 @@
-import {call, takeEvery, put, StrictEffect} from 'redux-saga/effects'
+import {call, put, StrictEffect, takeEvery} from 'redux-saga/effects'
 import {login} from '../../../api/rest/auth'
 import {LOGIN_REQUEST, LoginRequestType} from './types'
 import {actions} from './actions'

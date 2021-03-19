@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {Button, List} from 'antd'
 import {useDispatch, useSelector} from 'react-redux'
 import {useTranslation} from 'react-i18next'
-import {AppStateType} from '@redux/rootReducer'
+import {AppStateType} from '../redux/rootReducer'
 import {actions} from '../redux/todo/actions'
 import {TodoListItem} from "./TodoListItem"
 

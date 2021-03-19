@@ -1,6 +1,6 @@
 import {actions} from './actions'
-import {InferActionsTypes} from '../../../redux/store'
-import {CONFIRM_ERROR, CONFIRM_REQUEST, CONFIRM_SUCCESS} from '../../../redux/auth/confirm/types'
+import {InferActionsTypes} from '../../store'
+import {CONFIRM_ERROR, CONFIRM_REQUEST, CONFIRM_SUCCESS} from './types'
 
 const initialState = {
     loading: false,

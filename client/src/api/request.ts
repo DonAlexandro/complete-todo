@@ -3,13 +3,6 @@ import {config} from './config'
 type MethodType = 'GET' | 'POST'
 type BodyType = Record<string, any> | string | null
 
-// type UserHeadersTypes = {
-// 	authorization?: boolean | string,
-// 	'Content-Type'?: string
-// }
-//
-// type HeadersTypes = UserHeadersTypes & HeadersInit
-
 export async function request<T> (
 	path: string,
 	method = 'GET' as MethodType,

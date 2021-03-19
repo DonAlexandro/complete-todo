@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 import {useTranslation} from 'react-i18next'
 import {actions} from '../../redux/auth/recovery/actions'
-import {AppStateType} from '@redux/rootReducer'
+import {AppStateType} from '../../redux/rootReducer'
 
 export type RecoveryFormTypes = {
     email: string

@@ -1,4 +1,4 @@
-import {TodoFormTypes} from '@components/Forms/TodoForm'
+import {TodoFormTypes} from '../../components/Forms/TodoForm'
 
 export const BASE_REQUEST = 'BASE_REQUEST'
 export const CREATE_REQUEST = 'CREATE_REQUEST'

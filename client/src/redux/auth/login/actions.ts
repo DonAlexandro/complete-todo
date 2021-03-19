@@ -6,7 +6,7 @@ import {
     LoginRequestType,
     LoginSuccessType
 } from './types'
-import {LoginFormTypes} from '@components/Forms/LoginForm'
+import {LoginFormTypes} from '../../../components/Forms/LoginForm'
 
 export const actions = {
     loginRequest: (body: LoginFormTypes): LoginRequestType => ({

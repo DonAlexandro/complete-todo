@@ -3,7 +3,7 @@ import {Button, Form, Input} from 'antd'
 import {useDispatch, useSelector} from 'react-redux'
 import {useHistory, useParams} from 'react-router-dom'
 import {useTranslation} from 'react-i18next'
-import {AppStateType} from '@redux/rootReducer'
+import {AppStateType} from '../../redux/rootReducer'
 import {actions} from '../../redux/auth/recovery/actions'
 import {PasswordRouterPropsTypes} from '../../pages/Password'
 

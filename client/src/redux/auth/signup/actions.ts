@@ -7,7 +7,7 @@ import {
 	SignupErrorType,
 	SignupResponsePayloadType
 } from './types'
-import {SignupFormTypes} from '@components/Forms/SigupForm'
+import {SignupFormTypes} from '../../../components/Forms/SigupForm'
 
 export const actions = {
 	signupRequest: (body: SignupFormTypes): SignupRequestType => ({

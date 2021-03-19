@@ -1,13 +1,13 @@
 import {request} from '../request'
-import {TodoFormTypes} from '@components/Forms/TodoForm'
-import {EditTodoType, TodoType} from '@redux/todo/types'
+import {TodoFormTypes} from '../../components/Forms/TodoForm'
+import {EditTodoType, TodoType} from '../../redux/todo/types'
 
 export const create = (body: TodoFormTypes) => {
     return request<TodoType>('/api/todos/create', 'POST', body, {authorization: true})
 }
 
 export const fetchTodos = (page: number) => {
-    return request<any>(
+    return request<TodoType[]>(
         `/api/todos?page=${page}`,
         'GET',
         null,

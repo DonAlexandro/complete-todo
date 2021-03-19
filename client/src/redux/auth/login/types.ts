@@ -1,4 +1,4 @@
-import {LoginFormTypes} from '@components/Forms/LoginForm'
+import {LoginFormTypes} from '../../../components/Forms/LoginForm'
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'

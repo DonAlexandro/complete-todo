@@ -3,9 +3,9 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Button, Checkbox, List, Typography, Modal, Tooltip} from 'antd'
 import {DeleteFilled} from '@ant-design/icons'
 import {useTranslation} from 'react-i18next'
-import {TodoType} from '@redux/todo/types'
+import {TodoType} from '../redux/todo/types'
 import {actions} from '../redux/todo/actions'
-import {AppStateType} from '@redux/rootReducer'
+import {AppStateType} from '../redux/rootReducer'
 
 const {Paragraph} = Typography
 const {confirm} = Modal

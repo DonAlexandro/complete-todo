@@ -1,9 +1,10 @@
 import {request} from '../request'
-import {SignupFormTypes} from '@components/Forms/SigupForm'
-import {LoginFormTypes} from '@components/Forms/LoginForm'
+import {SignupFormTypes} from '../../components/Forms/SigupForm'
+import {LoginFormTypes} from '../../components/Forms/LoginForm'
 import {BaseResponseType} from '../types'
-import {RecoveryFormTypes} from '@components/Forms/RecoveryForm'
-import {PasswordBodyTypes} from "@redux/auth/recovery/types";
+import {RecoveryFormTypes} from '../../components/Forms/RecoveryForm'
+import {PasswordBodyTypes} from '../../redux/auth/recovery/types'
+import {LoginDataSuccessType} from '../../redux/auth/login/types'
 
 export const signup = (body: SignupFormTypes) => {
 	return request<BaseResponseType>('/api/auth/signup', 'POST', body)
@@ -14,7 +15,7 @@ export const confirm = (id: string) => {
 }
 
 export const login = (body: LoginFormTypes) => {
-	return request<any>('/api/auth/login', 'POST', body)
+	return request<LoginDataSuccessType>('/api/auth/login', 'POST', body)
 }
 
 export const recovery = (body: RecoveryFormTypes) => {
@@ -22,7 +23,7 @@ export const recovery = (body: RecoveryFormTypes) => {
 }
 
 export const token = (token: string | null) => {
-	return request<any>(`/api/auth/password/${token}`)
+	return request<{userId: string}>(`/api/auth/password/${token}`)
 }
 
 export const password = (body: PasswordBodyTypes) => {

@@ -1,5 +1,5 @@
-import {RecoveryFormTypes} from '@components/Forms/RecoveryForm'
-import {PasswordFormTypes} from '@components/Forms/PasswordForm'
+import {RecoveryFormTypes} from '../../../components/Forms/RecoveryForm'
+import {PasswordFormTypes} from '../../../components/Forms/PasswordForm'
 
 export const RECOVERY_REQUEST = 'RECOVERY_REQUEST'
 export const RECOVERY_SUCCESS = 'RECOVERY_SUCCESS'

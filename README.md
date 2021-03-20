@@ -6,7 +6,7 @@ It has been written, using **M**ongoDB, **E**xpress, **R**eact (with TypeScript)
 Also, you can check server's [package.json](https://github.com/DonAlexandro/complete-todo/blob/master/package.json)
 and client's [one](https://github.com/DonAlexandro/complete-todo/blob/master/client/package.json) to see lists of other packages, that I used in this app.
 
-### Available scripts
+## Available scripts
 
 #### `npm run start`
 Builds the app once. Useful, when there is a need to launch app on a real host
